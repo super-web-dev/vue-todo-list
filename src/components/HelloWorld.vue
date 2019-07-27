@@ -13,13 +13,14 @@
                 <div class="col-md-4 text-right">
                   <div class="">
                     <button id="toggleComplete" 
-                          class="btn btn-success" 
+                          class="btn btn-success m-1 btn-width-38" 
                           @click="toggleComplete(tasks[id-1])">
-                          <span class="fa fa-calendar">✔</span>
+                          <span v-if="!tasks[id-1].completed">✔</span>
+                          <span v-if="tasks[id-1].completed"> &nbsp;</span>
                           </button>
 
                       <button id="deleteTask" 
-                          class="btn glyphicon btn-danger"
+                          class="btn glyphicon btn-danger btn-width-38"
                           @click="deleteTask(id-1)">
                             <span>X</span>
                       </button>  
@@ -28,12 +29,12 @@
               </div>
             </div>
           </div>
-          <form @submit="addTask" class="from-addtask">
-            <div class="form-inline">
+          <form @submit="addTask" class="form-addtask">
+            <div class="form-inline row">
               <div class="col-md-3">
                 <label> Task </label>  
               </div>
-              <div class="col-md-8">
+              <div class="col-md-9 text-right">
               <input
                     type="text" 
                      class="form-control" placeholder="What do you need to do" 
@@ -130,13 +131,17 @@ export default {
 input, button {
   margin: 0.25rem 0rem;
 }
-input, pre {
+
+.btn-width-38 {
+  width: 38px;
+}
+
+input, pre, label{
   font-size: 20px !important;
 }
 .complete{
   #toggleComplete{
     color: #fff !important;
-    background-color: #5bc0de;
     border-color: #46b8da;
     content: "✔"
   }
@@ -172,6 +177,12 @@ input, pre {
       box-shadow: none;
       color: grey;
     
+  }
+}
+.form-addtask {
+  margin-top : 5rem;
+  input {
+    width: 100%;
   }
 }
 </style>
