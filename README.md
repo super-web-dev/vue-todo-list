@@ -1,5 +1,3 @@
-# ToDo List
-
 ## Project setup
 ```
 npm install
