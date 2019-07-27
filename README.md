@@ -1,4 +1,5 @@
-# boilerplate
+![Screenshot](screenshot.jpg)
+# Todo List
 
 ## Project setup
 ```
