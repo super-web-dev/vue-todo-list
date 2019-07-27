@@ -29,15 +29,20 @@
             </div>
           </div>
           <form @submit="addTask" class="from-addtask">
-            <div class="form-group">
-              <label class="col-md-6"> Task </label>
-              <input type="text" 
-                     class="form-control" placeholder="I need to..." 
-                     v-model="newTask" 
+            <div class="form-inline">
+              <div class="col-md-3">
+                <label> Task </label>  
+              </div>
+              <div class="col-md-8">
+              <input
+                    type="text" 
+                     class="form-control" placeholder="What do you need to do" 
+                     v-model="newTask"
                      />
+              </div>
             </div>
-            <div class="formgroup">
-              <button type="submit" class="btn  btn-primary"> Save Item</button>
+            <div class="form-group">
+              <button type="submit" class="btn  btn-primary text-right" style="float: right;"> Save Item</button>
             </div>
           </form>
         </div>
@@ -133,7 +138,7 @@ input, pre {
     color: #fff !important;
     background-color: #5bc0de;
     border-color: #46b8da;
-    
+    content: "✔"
   }
   #deleteTask{
     color: #fff !important;
@@ -154,13 +159,12 @@ input, pre {
 .incomplete{
   #toggleComplete{
     color: #fff !important;
-   
+    content : 'X'
   }
   #deleteTask{
     color: #fff !important;
     background-color: #d9534f;
     border-color: #d43f3a;
-   
   }
   input{
       text-decoration: line-through;
