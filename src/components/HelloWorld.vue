@@ -1,36 +1,43 @@
 <template>
   <div class="hello container">
-    <h1 class="todo-title"> To do: </h1>
-    <div class="container">
+    <div class="container col-md-6 col-sm-12">
       <div id="tasks">
-        <div class="col-md-6">
-          
-          <div v-for="id in tasks.length" :key="id">
+        <div class="table-border p-5">
+          <h1 class="text-left"> To do: </h1>
+          <div class="table-border">
+            <div class = "item-border container" v-for="id in tasks.length" :key="id" >
+              <div class="row" :class="!tasks[id-1].completed ? 'complete': 'incomplete'">
+                <input class="form-control col-md-8" 
+                       v-model="tasks[id-1].body"
+                       @click="incompleteTask(tasks[id-1])" />
+                <div class="col-md-4 text-right">
+                  <div class="">
+                    <button id="toggleComplete" 
+                          class="btn btn-success" 
+                          @click="toggleComplete(tasks[id-1])">
+                          <span class="fa fa-calendar">✔</span>
+                          </button>
 
-            <p class="form-inline" :class="!tasks[id-1].completed ? 'complete': 'incomplete'">
-              <input class="form-control" 
-                     v-model="tasks[id-1].body"
-                     @click="incompleteTask(tasks[id-1])">
-
-              <button id="toggleComplete" 
-                      class="btn btn-success" 
-                      @click="toggleComplete(tasks[id-1])">
-                      <i class="glyphicon glyphicon-ok"></i>
-                        
-                      </button>
-
-              <button id="deleteTask" 
-                      class="btn glyphicon btn-danger"
-                      @click="deleteTask(id-1)"></button>
-            </p>
+                      <button id="deleteTask" 
+                          class="btn glyphicon btn-danger"
+                          @click="deleteTask(id-1)">
+                            <span>X</span>
+                      </button>  
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <form @submit="addTask">
-            <div class="form-inline">
+          <form @submit="addTask" class="from-addtask">
+            <div class="form-group">
+              <label class="col-md-6"> Task </label>
               <input type="text" 
                      class="form-control" placeholder="I need to..." 
                      v-model="newTask" 
                      />
-              <button type="submit" class="btn  btn-primary" >Add</button>
+            </div>
+            <div class="formgroup">
+              <button type="submit" class="btn  btn-primary"> Save Item</button>
             </div>
           </form>
         </div>
@@ -38,6 +45,7 @@
       </div>
     </div>
   </div>
+
 </template>
 
 <script>
@@ -91,28 +99,31 @@ export default {
 
 <style lang="scss" scoped>
 .hello {
-  border: 1px solid grey;
   border-radius: .25rem;
   margin: 5rem 0rem;
   padding: 5em;
   margin-left: auto;
   margin-right:auto;
-}
 
-.hello{
-  p{
-    border: 1px solid grey;
+  .table-border{
+    border: 1px solid #ced4da;
     border-radius: .25rem;
     margin-bottom: 0rem;
   }
+  .item-border{
+    border-bottom: 1px solid #ced4da;
+    border-radius: .25rem;
+    margin-bottom: 0rem;
+  }
+
 }
 
-.todo-title{
-  text-align: left;
+.from-addtask{
+  margin-top: 5rem;
 }
 
 input, button {
-  margin: 0.25rem;
+  margin: 0.25rem 0rem;
 }
 input, pre {
   font-size: 20px !important;
@@ -122,17 +133,13 @@ input, pre {
     color: #fff !important;
     background-color: #5bc0de;
     border-color: #46b8da;
-    &:before{
-      content: "\e013"
-    }
+    
   }
   #deleteTask{
     color: #fff !important;
     background-color: #d9534f;
     border-color: #d43f3a;
-    &:before{
-      content: "\e014"
-    }
+   
   }
   input{
       border: none;
@@ -147,17 +154,13 @@ input, pre {
 .incomplete{
   #toggleComplete{
     color: #fff !important;
-    &:before{
-      content: "\2212"
-    }
+   
   }
   #deleteTask{
     color: #fff !important;
     background-color: #d9534f;
     border-color: #d43f3a;
-    &:before{
-      content: "\e014"
-    }
+   
   }
   input{
       text-decoration: line-through;
