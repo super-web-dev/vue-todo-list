@@ -1,6 +1,6 @@
 <template>
-  <div class="hello card">
-    <h1> To do: </h1>
+  <div class="hello container">
+    <h1 class="todo-title"> To do: </h1>
     <div class="container">
       <div id="tasks">
         <div class="col-md-6">
@@ -13,11 +13,14 @@
                      @click="incompleteTask(tasks[id-1])">
 
               <button id="toggleComplete" 
-                      class="btn glyphicon" 
-                      @click="toggleComplete(tasks[id-1])"></button>
+                      class="btn btn-success" 
+                      @click="toggleComplete(tasks[id-1])">
+                      <i class="glyphicon glyphicon-ok"></i>
+                        
+                      </button>
 
               <button id="deleteTask" 
-                      class="btn glyphicon"
+                      class="btn glyphicon btn-danger"
                       @click="deleteTask(id-1)"></button>
             </p>
           </div>
@@ -87,6 +90,30 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.hello {
+  border: 1px solid grey;
+  border-radius: .25rem;
+  margin: 5rem 0rem;
+  padding: 5em;
+  margin-left: auto;
+  margin-right:auto;
+}
+
+.hello{
+  p{
+    border: 1px solid grey;
+    border-radius: .25rem;
+    margin-bottom: 0rem;
+  }
+}
+
+.todo-title{
+  text-align: left;
+}
+
+input, button {
+  margin: 0.25rem;
+}
 input, pre {
   font-size: 20px !important;
 }
